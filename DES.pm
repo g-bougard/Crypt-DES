@@ -17,7 +17,7 @@ require Exporter;
 # Other items we are prepared to export if requested
 @EXPORT_OK =	qw();
 
-$VERSION = '2.00';
+$VERSION = '2.01';
 bootstrap Crypt::DES;
 
 package DES;
@@ -56,8 +56,6 @@ sub encrypt
 
 	my ($self,$data) = @_;
 	return Crypt::DES::crypt($data, $data, $self->{'ks'}, 1);
-
-	#return $data;
 }
 
 sub decrypt
@@ -66,8 +64,6 @@ sub decrypt
 
 	my ($self,$data) = @_;
 	return Crypt::DES::crypt($data, $data, $self->{'ks'}, 0);
-
-	#return $data;
 }
 
 1;
@@ -167,7 +163,7 @@ and is copyright of, Eric Young (eay@mincom.oz.au).
 Other parts of the perl extension and module are
 copyright of Systemics Ltd ( http://www.systemics.com/ ).
 Cross-platform work and packaging for single algorithm 
-distribution is Copyright of W3Works, LLC.
+distribution is copyright of W3Works, LLC.
 
 =head1 MAINTAINER
 

@@ -48,11 +48,7 @@ sub new
 	my $self = {}; 
 	bless $self, $type;
 
-#	print "rawkey: ". unpack("H*",$key) ."\n";
-
 	$self->{'ks'} = Crypt::DES::expand_key($key);
-
-#	print "expanded: ". unpack("H*",$self->{ks}) ."\n";
 
 	return $self;
 }
@@ -63,8 +59,6 @@ sub encrypt
 
 	my ($self,$data) = @_;
 	return Crypt::DES::crypt($data, $data, $self->{'ks'}, 1);
-
-	#$data;
 }
 
 sub decrypt
@@ -73,8 +67,6 @@ sub decrypt
 
 	my ($self,$data) = @_;
 	return Crypt::DES::crypt($data, $data, $self->{'ks'}, 0);
-
-	#$data;
 }
 
 

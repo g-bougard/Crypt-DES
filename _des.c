@@ -60,7 +60,6 @@
 */
 
 #include "des.h"
-#include <stdio.h>
 
 #define c2l(c,l)	(l =((unsigned long)(*((c)++))), \
 			 l|=((unsigned long)(*((c)++)))<< 8, \
