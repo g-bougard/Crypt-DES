@@ -6,7 +6,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
 	'NAME' => 'Crypt::DES',
 	'DISTNAME' => 'Crypt-DES',
-	'VERSION' => '1.0',
+	'VERSION' => '1.01',
 	'OBJECT' => 'DES.o des.o',
 	'dist'   => {COMPRESS=>'gzip', SUFFIX=>'gz'}
 );

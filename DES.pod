@@ -79,3 +79,6 @@ The implementation of the DES algorithm was developed by,
 and is copyright of, Eric Young (eay@mincom.oz.au).
 Other parts of this perl extension are
 copyright of Systemics Ltd ( http://www.systemics.com/ ).
+
+Altered on 22 May 1999 by Dave Paris to allow perl -MCPAN
+to work property (edited lib paths).

@@ -1,4 +1,4 @@
-#include <machine/types.h>
+#include <sys/types.h>
 
 typedef u_int8_t  des_user_key[8];
 typedef u_int32_t des_cblock[2];
