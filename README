@@ -44,13 +44,11 @@ OS/2 / x86 / 5.6
 
 Reports of builds against 5.004 have been equally
 positive.  Building on Win32 with VC++6 may prove
-problematic.  Please complain to Microsoft about
-their product quality and lack of adherance to
-standards.  Complaints about build problems on
+problematic.  Complaints about build problems on
 Win32 will be sent to /dev/null.
 
-Please report any other successful OS/Platform combinations
-to amused@pobox.com.  Thank you.
+Please report any other successful OS/Platform 
+combinations to amused@pobox.com.  Thank you.
 
 What you can expect in the way of speed:
 

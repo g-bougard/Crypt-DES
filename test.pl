@@ -13,6 +13,7 @@ package Crypt::DES;
 
 require Exporter;
 require DynaLoader;
+use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
 @ISA = (Exporter, DynaLoader);
 
@@ -22,13 +23,11 @@ require DynaLoader;
 # Other items we are prepared to export if requested
 @EXPORT_OK =	qw();
 
+$VERSION = '2.03';
 bootstrap Crypt::DES;
-
-#package DES;
 
 use strict;
 use Carp;
-use constant BLKSIZE => 8;
 
 sub usage
 {
@@ -37,8 +36,8 @@ sub usage
 	croak "Usage: $subr(@_)"; 
 }
 
-sub blocksize { BLKSIZE; }
-sub keysize { BLKSIZE; }
+sub blocksize { 8; }
+sub keysize   { 8; }
 
 sub new
 {
@@ -76,13 +75,6 @@ package main;
 
 use Data::Dumper;
 use Benchmark;
-#my $key = pack("H*", "7ca110454a1a6e57");
-#my $key = pack("H*", "0101010101010101");
-#my $in = pack("H*", "95f8a5e5dd31d900");
-#my $out = pack("H*", "8000000000000000");
-#my $tmp = pack("H*", "1234567890ABCDEF");
-#my $cipher = new Crypt::DES $key;
-
 
 #
 #	Adding the above tests into this program is
@@ -90,7 +82,7 @@ use Benchmark;
 #
 
 #
-#	Some tests...
+#	Some test values...
 #
 #                KEY                 PLAINTEXT           CIPHERTEXT
 my $testval = [
@@ -282,9 +274,6 @@ foreach my $tst (@{$testval}) {
 	#print "not ";
 	$fail++;
     }
-    #print "ok $i .. ";
-    #print "saw [encrypt \$in]: ". unpack("H*",$cipher->encrypt($tst->[1])) ." expected [\$out]: ";
-    #print unpack("H*",$tst->[2]) ."\n";
     $i++;
 
     $bnot = 1 unless ($cipher->decrypt($tst->[2]) eq $tst->[1]);
@@ -293,9 +282,6 @@ foreach my $tst (@{$testval}) {
 	$fail++;
     }
 ;
-    #print "ok $i .. ";
-    #print "saw [decrypt \$out]: ". unpack("H*",$cipher->decrypt($tst->[2])) ." expected [\$in]: ";
-    #print unpack("H*",$tst->[1]) ."\n";
     $i++;
 }
 my $t1 = new Benchmark;

@@ -8,8 +8,10 @@
 package Crypt::DES;
 
 require Exporter;
+require DynaLoader;
+use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
-@ISA = (Exporter, DynaLoader);
+@ISA = qw(Exporter DynaLoader);
 
 # Items to export into callers namespace by default
 @EXPORT =	qw();
@@ -17,14 +19,11 @@ require Exporter;
 # Other items we are prepared to export if requested
 @EXPORT_OK =	qw();
 
-$VERSION = '2.01';
-bootstrap Crypt::DES;
-
-package DES;
+$VERSION = '2.03';
+bootstrap Crypt::DES $VERSION;
 
 use strict;
 use Carp;
-use constant BLKSIZE => 8;
 
 sub usage
 {
@@ -34,8 +33,8 @@ sub usage
 }
 
 
-sub blocksize { BLKSIZE; }
-sub keysize { BLKSIZE; }
+sub blocksize { 8; }
+sub keysize   { 8; }
 
 sub new
 {
@@ -81,7 +80,7 @@ Crypt::DES - Perl DES encryption module
 
 =head1 DESCRIPTION
 
-The module implements the Crypt::BlockCipher interface,
+The module implements the Crypt::CBC interface,
 which has the following methods
 
 =over 4
@@ -144,9 +143,9 @@ blocks.  If you're intending to encrypt larger blocks or entire files,
 please use Crypt::CBC in conjunction with this module.  See the
 Crypt::CBC documentation for proper syntax and use.
 
-Also note that the DES algorithm is, by todays standard, weak 
+Also note that the DES algorithm is, by today's standard, weak 
 encryption.  Crypt::Blowfish is highly recommended if you're
-interested in using strong encryption.
+interested in using strong encryption and a faster algorithm. 
 
 =head1 SEE ALSO
 
