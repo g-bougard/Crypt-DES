@@ -1,10 +1,10 @@
 COPYRIGHT
 DES.pm
-DES.pod
 DES.xs
 MANIFEST
+README
 Makefile.PL
-des.c
+_des.c
 des.h
 test.pl
 typemap

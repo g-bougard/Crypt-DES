@@ -1,4 +1,9 @@
 /*
+*  cross-platform and mod_ssl-safe code modifications are Copyright (C)
+*  2000 W3Works, LLC.  All rights reserved.
+*/
+
+/*
  *	Copyright (C) 1995, 1996 Systemics Ltd (http://www.systemics.com/)
  *	All rights reserved.
  */
@@ -7,9 +12,17 @@
 #include "perl.h"
 #include "XSUB.h"
 
+typedef unsigned char i8;
+typedef unsigned long i32;
+
 #include "des.h"
 
+#ifndef sv_undef
+#define sv_undef  PL_sv_undef
+#endif
+
 MODULE = Crypt::DES		PACKAGE = Crypt::DES		PREFIX = des_
+PROTOTYPES: DISABLE
 
 char *
 des_expand_key(key)
@@ -23,7 +36,7 @@ des_expand_key(key)
 		if (key_len != sizeof(des_user_key))
 			croak("Invalid key");
 
-		des_expand_key((u_int8_t *)key, ks);
+		perl_des_expand_key((i8 *)key, ks);
 
 		ST(0) = sv_2mortal(newSVpv((char *)ks, sizeof(ks)));
 	}
@@ -54,7 +67,7 @@ des_crypt(input, output, ks, enc_flag)
 		if (!SvUPGRADE(output, SVt_PV))
 			croak("cannot use output argument as lvalue");
 
-		des_crypt((u_int32_t *)input, (u_int32_t *)SvGROW(output, output_len), (u_int32_t *)ks, enc_flag);
+		perl_des_crypt(input, SvGROW(output, output_len), (i32 *)ks, enc_flag);
 
 		SvCUR_set(output, output_len);
 		*SvEND(output) = '\0';
@@ -63,3 +76,15 @@ des_crypt(input, output, ks, enc_flag)
 
 		ST(0) = output;
 	}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,14 @@
 /*
+*  cross-platform and mod_ssl-safe code modifications are Copyright (C)
+*  2000 W3Works, LLC.  All rights reserved.
+*/
+
+/*
+* The modifications found herein are Copyright (C) W3Works, LLC.
+# All rights reserved.
+*/
+
+/*
  *	NB - This file is a modified version of one by Eric Young.
  *  It was modifed by Systemics Ltd (http://www.systemics.com/)
  */
@@ -49,8 +59,8 @@
 * [including the GNU Public Licence.]
 */
 
-
 #include "des.h"
+#include <stdio.h>
 
 #define c2l(c,l)	(l =((unsigned long)(*((c)++))), \
 			 l|=((unsigned long)(*((c)++)))<< 8, \
@@ -67,7 +77,7 @@
 	(a)=(a)^(t)^(t>>(16-(n))))
 
 
-unsigned long des_SPtrans[8][64]={
+unsigned long des_SPtrans_x[8][64]={
 /* nibble 0 */
 0x00820200, 0x00020000, 0x80800000, 0x80820200,
 0x00800000, 0x80020200, 0x80020000, 0x80800000,
@@ -381,14 +391,14 @@ unsigned long des_skb[8][64]={
 	u=(R^s[S  ]); \
 	t=R^s[S+1]; \
 	t=((t>>4)+(t<<28)); \
-	L^=	des_SPtrans[1][(t    )&0x3f]| \
-		des_SPtrans[3][(t>> 8)&0x3f]| \
-		des_SPtrans[5][(t>>16)&0x3f]| \
-		des_SPtrans[7][(t>>24)&0x3f]| \
-		des_SPtrans[0][(u    )&0x3f]| \
-		des_SPtrans[2][(u>> 8)&0x3f]| \
-		des_SPtrans[4][(u>>16)&0x3f]| \
-		des_SPtrans[6][(u>>24)&0x3f];
+	L^=	des_SPtrans_x[1][(t    )&0x3f]| \
+		des_SPtrans_x[3][(t>> 8)&0x3f]| \
+		des_SPtrans_x[5][(t>>16)&0x3f]| \
+		des_SPtrans_x[7][(t>>24)&0x3f]| \
+		des_SPtrans_x[0][(u    )&0x3f]| \
+		des_SPtrans_x[2][(u>> 8)&0x3f]| \
+		des_SPtrans_x[4][(u>>16)&0x3f]| \
+		des_SPtrans_x[6][(u>>24)&0x3f];
 #endif
 
 	/* IP and FP
@@ -434,17 +444,18 @@ unsigned long des_skb[8][64]={
 
 
 void
-des_crypt(des_cblock input, des_cblock output, des_ks ks, int encrypt)
+perl_des_crypt( des_cblock input, des_cblock output, des_ks ks, int encrypt )
 {
-	static unsigned long l,r,t,u;
+	unsigned long l,r,t,u;
 #ifdef ALT_ECB
-	static unsigned char *des_SP=(unsigned char *)des_SPtrans;
+	unsigned char *des_SP=(unsigned char *)des_SPtrans_x;
 #endif
 	static int i;
 	static unsigned long * s;
+	unsigned char * ptr;
 
-	l=input[0];
-	r=input[1];
+	c2l( input, l ); /* get endian free long from input block */
+	c2l( input, r ); /* get endian free long from input block */
 
 	/* do IP */
 	PERM_OP(r,l,t, 4,0x0f0f0f0f);
@@ -457,7 +468,7 @@ des_crypt(des_cblock input, des_cblock output, des_ks ks, int encrypt)
 
 	/* Things have been modified so that the initial rotate is
 	 * done outside the loop.  This required the 
-	 * des_SPtrans values in sp.h to be rotated 1 bit to the right.
+	 * des_SPtrans_x values in sp.h to be rotated 1 bit to the right.
 	 * One perl script later and things have a 5% speed up on a sparc2.
 	 * Thanks to Richard Outerbridge <71755.204@CompuServe.COM>
 	 * for pointing this out. */
@@ -505,17 +516,17 @@ des_crypt(des_cblock input, des_cblock output, des_ks ks, int encrypt)
 	PERM_OP(l,r,t,16,0x0000ffff);
 	PERM_OP(r,l,t, 4,0x0f0f0f0f);
 
-	output[0]=l;
-	output[1]=r;
+	l2c( l, output ); /* get endian free long from input block */
+	l2c( r, output ); /* get endian free long from input block */
 }
 
 void
-des_expand_key(des_user_key userKey, des_ks ks)
+perl_des_expand_key(des_user_key userKey, des_ks ks)
 {
-	static unsigned long c,d,t,s;
-  static unsigned char * in;
-	static unsigned long * k;
-	static int i;
+	unsigned long c,d,t,s;
+ 	unsigned char * in;
+	unsigned long * k;
+	int i;
 	static unsigned char shifts2[16]={0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0};
 
 	k=(unsigned long *)ks;

@@ -1,5 +1,10 @@
 This perl extension includes software developed by Eric Young (eay@mincom.oz.au)
 
+Modifications, including cross-platform fixups, and single-algorithm distribution 
+packaging are Copyright (C) 2000 W3Works, LLC.  All Rights Reserved.  Mail 
+questions and comments to Dave Paris <amused@pobox.com>. Original distribution 
+license (below) applies.
+
 Other parts of the library are covered by the following licence:
 
 Copyright (C) 1995, 1996 Systemics Ltd (http://www.systemics.com/)
