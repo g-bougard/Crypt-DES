@@ -59,7 +59,7 @@
 * [including the GNU Public Licence.]
 */
 
-#include "des.h"
+#include "_des.h"
 
 #define c2l(c,l)	(l =((unsigned long)(*((c)++))), \
 			 l|=((unsigned long)(*((c)++)))<< 8, \

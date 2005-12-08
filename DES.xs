@@ -15,7 +15,7 @@
 typedef unsigned char i8;
 typedef unsigned long i32;
 
-#include "des.h"
+#include "_des.h"
 
 #ifndef sv_undef
 #define sv_undef  PL_sv_undef

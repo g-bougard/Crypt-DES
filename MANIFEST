@@ -5,6 +5,7 @@ MANIFEST
 README
 Makefile.PL
 _des.c
-des.h
+_des.h
 test.pl
 typemap
+META.yml                                 Module meta-data (added by MakeMaker)

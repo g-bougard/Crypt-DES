@@ -10,6 +10,10 @@ mod_ssl conflicts have also been resolved.  Thank you
 to Jan 'Kozo' Vajda for pointing out the des_SPtrans
 overlap between these two packages.
 
+In release 2.04, des.h was renamed to _des.h in an
+attempt to solve the build-on-Solaris problem.  Reports
+would be appreciated.
+
 Prerequisites
 -------------
 
