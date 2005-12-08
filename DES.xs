@@ -21,11 +21,11 @@ typedef unsigned long i32;
 #define sv_undef  PL_sv_undef
 #endif
 
-MODULE = Crypt::DES		PACKAGE = Crypt::DES		PREFIX = des_
+MODULE = Crypt::DES		PACKAGE = Crypt::DES		PREFIX = _des_
 PROTOTYPES: DISABLE
 
 char *
-des_expand_key(key)
+_des_expand_key(key)
 	char *	key = NO_INIT
 	STRLEN	key_len = NO_INIT
     CODE:
@@ -42,7 +42,7 @@ des_expand_key(key)
 	}
 
 void
-des_crypt(input, output, ks, enc_flag)
+_des_crypt(input, output, ks, enc_flag)
 	char *	input = NO_INIT
 	SV *	output
 	char *	ks = NO_INIT

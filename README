@@ -14,6 +14,10 @@ In release 2.04, des.h was renamed to _des.h in an
 attempt to solve the build-on-Solaris problem.  Reports
 would be appreciated.
 
+In release 2.05, all references to des_ were changed to
+_des_ since the 2.04 release didn't seem to fix the problem
+on Solaris.
+
 Prerequisites
 -------------
 
