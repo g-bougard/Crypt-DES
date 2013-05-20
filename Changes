@@ -1,0 +1,9 @@
+Change log for Crypt::DES
+
+2.05_001 May 20, 2013
+  - Unauthorized release.
+  - Fix incorrect use of SvUPGRADE so that the module can be
+    installed on Perl 5.18.
+
+2.05 December 08, 2005
+  - Release notes in README
