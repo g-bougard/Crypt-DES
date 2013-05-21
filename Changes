@@ -1,5 +1,9 @@
 Change log for Crypt::DES
 
+2.05_002 May 20, 2013
+  - Fixed missing semicolon in DES.pm (why doesn't test suite
+    catch syntax errors?)
+
 2.05_001 May 20, 2013
   - Unauthorized release.
   - Fix incorrect use of SvUPGRADE so that the module can be
