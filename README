@@ -20,6 +20,8 @@ on Solaris.
 
 In release 2.06, SvUPGRADE was changed to a statement.
 
+In release 2.07, a minor bug in META.yml was fixed.
+
 Prerequisites
 -------------
 
