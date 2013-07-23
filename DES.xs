@@ -64,7 +64,7 @@ _des_crypt(input, output, ks, enc_flag)
 			output = sv_newmortal();
 		output_len = 8;
 
-		(void) SvUPGRADE(output, SVt_PV);
+		(SvUPGRADE(output, SVt_PV));
 
 		perl_des_crypt(input, SvGROW(output, output_len), (i32 *)ks, enc_flag);
 

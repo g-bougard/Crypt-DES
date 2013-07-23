@@ -18,8 +18,7 @@ In release 2.05, all references to des_ were changed to
 _des_ since the 2.04 release didn't seem to fix the problem
 on Solaris.
 
-2.05_001 is an unauthorized release to restore compatibility
-with Perl 5.18 (RT 82493 fixed).
+In release 2.06, SvUPGRADE was changed to a statement.
 
 Prerequisites
 -------------

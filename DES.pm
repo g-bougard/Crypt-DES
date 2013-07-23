@@ -9,7 +9,7 @@ package Crypt::DES;
 
 require Exporter;
 require DynaLoader;
-use vars qw($VERSION $XS_VERSION @ISA @EXPORT @EXPORT_OK);
+use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
 @ISA = qw(Exporter DynaLoader);
 
@@ -19,9 +19,8 @@ use vars qw($VERSION $XS_VERSION @ISA @EXPORT @EXPORT_OK);
 # Other items we are prepared to export if requested
 @EXPORT_OK =	qw();
 
-$VERSION = '2.05_002';
-$XS_VERSION = $VERSION;
-bootstrap Crypt::DES $XS_VERSION;
+$VERSION = '2.06';
+bootstrap Crypt::DES $VERSION;
 
 use strict;
 use Carp;
