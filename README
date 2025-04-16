@@ -22,7 +22,7 @@ In release 2.06, SvUPGRADE was changed to a statement.
 
 In release 2.07, a minor bug in META.yml was fixed.
 
-Release 2.07a fixes building with gcc 14.
+Release 2.07_01 fixes building with gcc 14.
 
 Prerequisites
 -------------
