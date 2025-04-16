@@ -451,7 +451,6 @@ perl_des_crypt( des_cblock input, des_cblock output, des_ks ks, int encrypt )
 #endif
 	static int i;
 	static unsigned long * s;
-	unsigned char * ptr;
 
 	c2l( input, l ); /* get endian free long from input block */
 	c2l( input, r ); /* get endian free long from input block */
